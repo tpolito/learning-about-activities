@@ -71,9 +71,8 @@ export const useSetupAndAuthDiscord = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const discordSDK = new DiscordSDK(import.meta.env.VITE_DISCORD_CLIENT_ID);
-
     async function setupAndAuthDiscordSdk() {
+      const discordSDK = new DiscordSDK(import.meta.env.VITE_DISCORD_CLIENT_ID);
       try {
         await discordSDK.ready();
         console.log("Discord SDK is ready");
