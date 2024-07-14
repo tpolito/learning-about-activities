@@ -1,6 +1,7 @@
 import "./App.css";
 import rocket from "./assets/rocket.png";
 import { useSetupAndAuthDiscord } from "./hooks/useSetupAndAuthDiscord";
+import { AuthenticatedView } from "./views/AuthenticatedView";
 
 function App() {
   const { auth, isLoading, error } = useSetupAndAuthDiscord();
@@ -10,16 +11,19 @@ function App() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
 
-  return (
-    <div>
-      <img src={rocket} alt="rocket" />
-      <h1>Hello worlds</h1>
-      {auth && <p>Authenticated successfully!</p>}
-    </div>
-  );
+  if (!auth) {
+    return (
+      <div>
+        <img src={rocket} alt="rocket" />
+        <h1>Not authenticated</h1>
+      </div>
+    );
+  }
+
+  return <AuthenticatedView />;
 }
 
 export default App;

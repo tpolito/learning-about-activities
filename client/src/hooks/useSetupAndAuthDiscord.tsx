@@ -94,7 +94,8 @@ export const useSetupAndAuthDiscord = () => {
           body: JSON.stringify({ code }),
         });
 
-        const { access_token } = await response.json();
+        const responseJson = await response.json();
+        const { access_token } = responseJson;
         const authResult = await discordSDK.commands.authenticate({
           access_token,
         });
